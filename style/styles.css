@@ -1,4 +1,22 @@
-/* ===== ОБЩИЕ НАСТРОЙКИ ===== */
+/* CSS-ПЕРЕМЕННЫЕ */
+:root {
+    --color-bg: #eafaf1;
+    --color-main: #1e8449;
+    --color-accent: #27ae60;
+    --color-light: #ecf0f1;
+    --color-dark: #34495e;
+    --color-text: #2c3e50;
+    --color-white: #ffffff;
+
+    --radius: 12px;
+    --shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 40px;
+}
+
+/* СБРОС И БАЗА */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,9 +24,9 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
 }
 
 /* Семантические теги */
@@ -16,145 +34,148 @@ header, nav, main, section, article, footer {
     display: block;
 }
 
-/* ===== ОСНОВНАЯ СЕТКА СТРАНИЦЫ (GRID) ===== */
-.page-container {
+/* ОСНОВНАЯ СЕТКА */
+.page {
+    min-height: 100vh;
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    min-height: 100vh;
 }
 
-/* ===== ХЭДЕР ===== */
+/* ХЭДЕР */
 .header {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    background: var(--color-white);
+    padding: var(--space-md);
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
 }
 
-/* ===== НАВИГАЦИЯ (FLEX) ===== */
+.header__title {
+    color: var(--color-main);
+}
+
+/* НАВИГАЦИЯ */
 .nav {
-    background: #1e8449;
+    background: var(--color-main);
 }
 
-.nav-list {
+.nav__list {
+    list-style: none;
     display: flex;
     justify-content: center;
-    list-style: none;
-    padding: 15px;
-    gap: 20px;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
 }
 
-.nav-link {
-    color: white;
+.nav__link {
+    color: var(--color-white);
     text-decoration: none;
-    font-weight: bold;
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     transition: background 0.3s;
 }
 
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+.nav__link:hover {
+    background: rgba(255,255,255,0.2);
 }
 
-/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
-.content {
-    padding: 40px 20px;
-    max-width: 1200px;
+.nav__item--active .nav__link {
+    background: var(--color-accent);
+}
+
+/* ОСНОВНОЙ КОНТЕНТ */
+.main {
+    padding: var(--space-lg) var(--space-md);
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-/* ===== ПРОФИЛЬ ===== */
-.profile-header {
+/* ПРОФИЛЬ */
+.profile {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: var(--space-lg);
 }
 
-.profile-photo {
-    width: 160px;
-    height: 160px;
+.profile__photo {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 20px 0;
+    margin-bottom: var(--space-md);
 }
 
-.profile-title {
-    font-size: 28px;
+/* ОБО МНЕ */
+.about {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--space-lg);
 }
 
-.profile-name {
-    font-size: 22px;
-    margin-top: 10px;
+/* НАВЫКИ */
+.skills__title {
+    margin-bottom: var(--space-md);
 }
 
-.profile-group {
-    color: #555;
+.skills__list {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
 }
 
-/* ===== ОБО МНЕ ===== */
-.about-me {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-/* ===== НАВЫКИ (GRID) ===== */
-.skills-container {
-    margin-bottom: 40px;
-}
-
-.skills-container h2 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-}
-
-.skill-tag {
-    background: #1e8449;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    border-radius: 10px;
+/* Блок навыков */
+.skill {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    color: var(--color-white);
     font-weight: bold;
+    transition: transform 0.3s;
 }
 
-/* ===== ОПЫТ РАБОТЫ (GRID) ===== */
-.experience-section {
-    margin-bottom: 40px;
+.skill:hover {
+    transform: translateY(-4px);
 }
 
-.section-title {
+/* Модификаторы навыков */
+.skill--html {
+    background: #e34c26;
+}
+
+.skill--css {
+    background: #264de4;
+}
+
+.skill--js {
+    background: #f0db4f;
+    color: #000000;
+}
+
+/* ОПЫТ РАБОТЫ */
+.experience__title {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: var(--space-md);
 }
 
-.experience-grid {
+.experience__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: var(--space-md);
 }
 
-.experience-card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+.experience__card {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
 }
 
-.experience-title {
-    margin-bottom: 10px;
+.experience__card:hover {
+    transform: translateY(-5px);
 }
 
-/* ===== НОВОСТИ ===== */
+/* НОВОСТИ */
 .news-container {
+    display: flex; justify-content: center; align-items: center;
     display: grid;
     gap: 25px;
 }
@@ -164,6 +185,7 @@ header, nav, main, section, article, footer {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .news-title {
@@ -176,7 +198,7 @@ header, nav, main, section, article, footer {
     margin-bottom: 10px;
 }
 
-/* ===== ТОВАРЫ (GRID) ===== */
+/* КОМПОНЕНТ КАРТОЧКИ ТОВАРА (БЭМ) */
 .goods-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -199,6 +221,78 @@ header, nav, main, section, article, footer {
     margin-bottom: 15px;
 }
 
+/* Базовое состояние */
+.product-card {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Наведение */
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Изображение */
+.product-card__image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: var(--space-sm);
+}
+
+/* Название */
+.product-card__title {
+    margin-bottom: var(--space-sm);
+}
+
+/* Цена */
+.product-card__price {
+    font-weight: bold;
+    margin-bottom: var(--space-sm);
+}
+
+/* Кнопка */
+.product-card__button {
+    padding: 8px 16px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+/* =====================================================
+   МОДИФИКАТОРЫ СОСТОЯНИЙ
+   ===================================================== */
+
+/* Выбранная карточка */
+.product-card--selected {
+    border: 3px solid var(--color-accent);
+}
+
+/* Карточка со скидкой */
+.product-card--sale .product-card__price {
+    color: red;
+}
+
+/* Визуальный акцент скидки */
+.product-card--sale::before {
+    content: "SALE";
+    display: inline-block;
+    background: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+
 /* ===== КОНТАКТЫ ===== */
 .contacts-container {
     background: white;
@@ -209,10 +303,37 @@ header, nav, main, section, article, footer {
     margin: 0 auto;
 }
 
-/* ===== ФУТЕР ===== */
+/* ФУТЕР */
 .footer {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-white);
     text-align: center;
-    padding: 15px;
+    padding: var(--space-sm);
     font-weight: bold;
+}
+
+/* ТЁМНАЯ ТЕМА */
+.theme-dark {
+    --color-bg: #1e1e1e;
+    --color-main: #145a32;
+    --color-accent: #2ecc71;
+
+    --color-text: #ecf0f1;
+    --color-white: #2c2c2c;
+
+    --shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+/* КНОПКА СМЕНЫ ТЕМЫ */
+.theme-toggle {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    opacity: 0.9;
 }
